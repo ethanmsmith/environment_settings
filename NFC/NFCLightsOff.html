@@ -1,21 +1,26 @@
 <html>
+
 <head>
     <style>
-        html, body {
+        html,
+        body {
             background-color: black;
         }
     </style>
 </head>
+
 <body>
     <script>
-        document.onload(() => {
+        window.onload = () => {
             fetch('http://localhost:4000/api/nfc/lightsoff').then((response) => {
                 if (response.ok) {
                     window.close();
                 }
+                document.querySelector("span").innerHTML = response.json();
             });
-        });
+        }
     </script>
+    <span></span>
 </body>
 
 </html>
