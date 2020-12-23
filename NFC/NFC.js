@@ -23,7 +23,6 @@ app.get("/api/nfc/lightsoff", (req, res) => {
           ).then((data) => {
             responseData[light] = data;
             if(Object.keys(responseData).length === Object.keys(resdata).length) {
-              console.log('resolve');
               resolve(responseData);
             }
           });
@@ -34,7 +33,7 @@ app.get("/api/nfc/lightsoff", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`NFC listening at http://localhost:${port}`);
 });
 
 async function putData(url = "", data = {}) {

@@ -16,7 +16,8 @@
                 if (response.ok) {
                     window.close();
                 }
-                document.querySelector("span").innerHTML = response.json();
+                document.querySelector("span").innerHTML = response.status;
+
             });
         }
     </script>
