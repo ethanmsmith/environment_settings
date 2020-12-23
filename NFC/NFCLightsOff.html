@@ -1,0 +1,15 @@
+<html>
+
+<body>
+    <script>
+        document.onload(() => {
+            fetch('http://localhost:4000/api/nfc/lightsoff').then((response) => {
+                if (response.ok) {
+                    window.close();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
