@@ -34,9 +34,34 @@ app.get("/api/nfc/lightsoff", (req, res) => {
   });
 });
 
+app.get("/api/nfc/lightson", (req, res) => {
+  fetch(
+    `${rootHueAPI}/lights`
+  ).then((response) => {
+    let responseData = {};
+    new Promise((resolve, reject) => {
+      response.json().then((resdata) => {
+        Object.keys(resdata).forEach((light) => {
+          putData(
+            `${rootHueAPI}/lights/${light}/state`,
+            { on: true }
+          ).then((data) => {
+            responseData[light] = data;
+            if(Object.keys(responseData).length === Object.keys(resdata).length) {
+              resolve(responseData);
+            }
+          });
+        });
+      });
+    }).then(response => res.status(200).send(response));
+  });
+});
+
 app.listen(port, () => {
   console.log(`NFC listening at http://localhost:${port}`);
 });
+
+
 
 async function putData(url = "", data = {}) {
   // Default options are marked with *
