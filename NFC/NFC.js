@@ -4,6 +4,8 @@ var path = require('path');
 
 const app = express();
 const port = 4000;
+const hueUsername = 'yvFMkyELQj3JpWCsK2IhcM2m95S7Y2rHPlwwIrVV'
+const rootHueAPI = `http://philips.hue/api/${hueUsername}`
 
 app.get('/nfc/lightsoff', (req, res) => {
   res.sendFile(path.join(__dirname + '/NFCLightsOff.html'));
@@ -11,14 +13,14 @@ app.get('/nfc/lightsoff', (req, res) => {
 
 app.get("/api/nfc/lightsoff", (req, res) => {
   fetch(
-    "http://192.168.50.124/api/yvFMkyELQj3JpWCsK2IhcM2m95S7Y2rHPlwwIrVV/lights"
+    `${rootHueAPI}/lights`
   ).then((response) => {
     let responseData = {};
     new Promise((resolve, reject) => {
       response.json().then((resdata) => {
         Object.keys(resdata).forEach((light) => {
           putData(
-            `http://192.168.50.124/api/yvFMkyELQj3JpWCsK2IhcM2m95S7Y2rHPlwwIrVV/lights/${light}/state`,
+            `${rootHueAPI}/lights/${light}/state`,
             { on: false }
           ).then((data) => {
             responseData[light] = data;
