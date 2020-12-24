@@ -5,7 +5,7 @@
         html,
         body {
             background-color: black;
-            color:aliceblue;
+            color:green;
         }
     </style>
 </head>
@@ -15,9 +15,11 @@
         window.onload = () => {
             fetch('/api/nfc/lightsoff').then((response) => {
                 if (response.ok) {
+                    document.querySelector("span").innerHTML = response.status;
+                    window.close();
+                } else {
                     window.close();
                 }
-                document.querySelector("span").innerHTML = response.status;
 
             });
         }
