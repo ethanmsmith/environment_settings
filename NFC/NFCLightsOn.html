@@ -1,0 +1,27 @@
+<html>
+
+<head>
+    <style>
+        html,
+        body {
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        window.onload = () => {
+            fetch('/api/nfc/lightson').then((response) => {
+                if (response.ok) {
+                    window.close();
+                }
+                document.querySelector("span").innerHTML = response.status;
+
+            });
+        }
+    </script>
+    <span></span>
+</body>
+
+</html>

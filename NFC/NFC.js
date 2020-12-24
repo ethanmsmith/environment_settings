@@ -11,6 +11,10 @@ app.get('/nfc/lightsoff', (req, res) => {
   res.sendFile(path.join(__dirname + '/NFCLightsOff.html'));
 });
 
+app.get('/nfc/lightson', (req, res) => {
+  res.sendFile(path.join(__dirname + '/NFCLightsOn.html'));
+});
+
 app.get("/api/nfc/lightsoff", (req, res) => {
   fetch(
     `${rootHueAPI}/lights`
